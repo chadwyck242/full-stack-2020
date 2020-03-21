@@ -14,11 +14,18 @@ browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
 server-->browser: main.css
 browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
 server-->browser: main.js
-browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
-server-->browser: data.json
+
 
 new_note over server:
 server runs jscode that add the
 new_note to the note array returned 
 with data.json using AJAX
+end new_note
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+server-->browser: [{content: "HTML is easy", date: "2019-05-23T17:30:31.098Z"},…]
+
+new_note over browser:
+JSON data from data.json sent 
+to the url new_note to be displayed
 end new_note
