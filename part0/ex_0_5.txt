@@ -7,16 +7,16 @@ server-->browser: main.css
 browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
 server-->browser: spa.js
 
-spa over browser:
+note over browser:
 js-code starts executing which then requests
 the JSON data from the server
-end spa
+end note
 
 browser --> server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
 server-->browser: [{content: "HTML is easy", date: "2019-05-23T17:30:31.098Z"},…]
 
-spa over browser:
+note over browser:
 event handler that renders the spa notes to
 display is called by the browser
-end spa
+end note
 

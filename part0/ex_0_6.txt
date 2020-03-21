@@ -1,0 +1,33 @@
+# Exercise 0.6
+
+note over browser:
+form has no action or method attributes
+to define where to send the form input data.
+When submitted only one request sent to server
+end note
+
+browser --> server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over browser:
+the POST request has data payload for the server
+with the JSON data of the new note
+{content: "yuppers", date: "2020-03-21T21:39:46.181Z"}
+end note
+
+note over server
+server parses JSON data
+end note
+
+server --> browser statuscode 201 created
+
+note over browser
+browser uses js-code to create the new note
+and add it to the notes array.
+Note is rendered on the page, and the
+updated array sent back to server.
+end note
+
+
+
+
+
