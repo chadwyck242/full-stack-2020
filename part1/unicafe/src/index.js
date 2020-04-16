@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-const Statistics = ({ good, neutral, bad, total }) => {
-  if (good == 0 && neutral == 0 && bad == 0) {
+const Button = (props) => (
+  <button onClick={props.handleClick}>{props.text}</button>
+);
+
+const Statistic = ({ text, value }) => {
+  return (
+    <div>
+      <p>
+        {text} {value}
+      </p>
+    </div>
+  );
+};
+
+const Statistics = ({ good, neutral, bad, total, average, positive }) => {
+  if (good === 0 && neutral === 0 && bad === 0) {
     return (
       <div>
         <h1>statistics</h1>
@@ -13,12 +27,12 @@ const Statistics = ({ good, neutral, bad, total }) => {
   return (
     <div>
       <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
-      <p>average {(good * 1 + neutral * 0 + bad * -1) / total}</p>
-      <p>positive {(good / total) * 100} %</p>
+      <Statistic text="good" value={good} />
+      <Statistic text="neutral" value={neutral} />
+      <Statistic text="bad" value={bad} />
+      <Statistic text="all" value={total} />
+      <Statistic text="average" value={average} />
+      <Statistic text="positive" value={positive} />
     </div>
   );
 };
@@ -30,17 +44,26 @@ const App = () => {
   const [bad, setBad] = useState(0);
 
   const total = good + neutral + bad;
+  const average = (good * 1 + neutral * 0 + bad * -1) / total;
+  const positive = (good / total) * 100 + " %";
 
   return (
     <div>
       <div>
         <h1>give feedback</h1>
-        <button onClick={() => setGood(good + 1)}>good</button>
-        <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
-        <button onClick={() => setBad(bad + 1)}>bad</button>
+        <Button handleClick={() => setGood(good + 1)} text="good" />
+        <Button handleClick={() => setNeutral(neutral + 1)} text="neutral" />
+        <Button handleClick={() => setBad(bad + 1)} text="bad" />
       </div>
       <div>
-        <Statistics good={good} neutral={neutral} bad={bad} total={total} />
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          average={average}
+          positive={positive}
+        />
       </div>
     </div>
   );
