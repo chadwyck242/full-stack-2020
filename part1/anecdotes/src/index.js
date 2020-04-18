@@ -16,6 +16,7 @@ let votesArray = [...zeroArray];
 const App = (props) => {
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState(0);
+  const [score, setScore] = useState(0);
 
   const getRandomSelection = () => {
     const randomNumber = Math.floor(Math.random() * anecdotes.length);
@@ -24,20 +25,36 @@ const App = (props) => {
   };
 
   const setSelectedVotes = () => {
-    console.log(votesArray);
     let voteIndex = anecdotes.indexOf(anecdotes[selected]);
-    console.log(voteIndex);
     votesArray[voteIndex] += 1;
-    console.log(votesArray);
     setVotes(votesArray[voteIndex]);
+    getTopScore();
   };
+
+  const getTopScore = () => {
+    let highScore = Math.max(...votesArray);
+    console.log(highScore);
+    setScore(highScore);
+  };
+
+  const topIndex = votesArray.indexOf(score);
+  console.log(topIndex);
+  console.log(votesArray);
 
   return (
     <div>
-      <p>{props.anecdotes[selected]}</p>
-      <p>has {votes} votes</p>
-      <button onClick={() => setSelectedVotes()}>vote</button>
-      <button onClick={() => getRandomSelection()}>next anecdote</button>
+      <div>
+        <h1>Anecdote of the day</h1>
+        <p>{props.anecdotes[selected]}</p>
+        <p>has {votes} votes</p>
+        <button onClick={() => setSelectedVotes()}>vote</button>
+        <button onClick={() => getRandomSelection()}>next anecdote</button>
+      </div>
+      <div>
+        <h1>Anecdote with most votes</h1>
+        <p>{props.anecdotes[topIndex]}</p>
+        <p>has {score} votes</p>
+      </div>
     </div>
   );
 };
