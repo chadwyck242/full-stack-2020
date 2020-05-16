@@ -12,8 +12,19 @@ const App = (props) => {
       number: "",
     };
 
-    setPersons(persons.concat(personObject));
-    setNewName("");
+    const nameFound = persons.some(
+      (person) => personObject.name === person.name
+    );
+
+    console.log(nameFound);
+    if (!nameFound) {
+      setPersons(persons.concat(personObject));
+      setNewName("");
+    } else {
+      let alertString = `${personObject.name} is already added to phonebook`;
+      alert(alertString);
+      setNewName("");
+    }
   };
 
   const handleNameChange = (event) => {
