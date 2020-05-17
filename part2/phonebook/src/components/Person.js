@@ -1,7 +1,12 @@
 import React from "react";
 
-const Person = ({ person }) => {
-  return <li>{person.name}</li>;
+const Person = ({ name, number }) => {
+  return (
+    <li>
+      <span className="name">{name}</span>
+      <span className="number">{number}</span>
+    </li>
+  );
 };
 
 export default Person;
