@@ -12,7 +12,8 @@ code {
     monospace;
 }
 
-h2 {
+h2,
+h3 {
   font-size: 28px;
   font-weight: bolder;
   margin-left: 10px;
@@ -27,14 +28,15 @@ input {
   margin: 5px;
 }
 
-.input {
-  margin-left: 10px;
+.input,
+.search {
+  margin-left: 15px;
 }
 
 .submit {
   padding: 5px;
   font-weight: 500;
-  margin: 10px;
+  margin: 10px 15px;
   width: 48px;
 }
 
